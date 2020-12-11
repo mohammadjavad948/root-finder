@@ -53,3 +53,17 @@ h1{
   position: absolute;
   bottom: 5%;
 }
+
+@media only screen and (max-width: 650px) {
+
+  .number{
+    right: unset;
+    bottom: 17%;
+    width: 50%;
+  }
+
+  .index{
+    left: unset;
+    top: 20%;
+  }
+}
