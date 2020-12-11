@@ -19,6 +19,8 @@ function App() {
     function findMinAndMax() {
         if (number < 1 && index < 2) return null
 
+        console.time('calculate time');
+
         let flag = true;
         let going = 1;
 
@@ -37,6 +39,8 @@ function App() {
                 console.log(`${going} ^ ${index} is bigger than ${number} . we are done!`)
 
                 setMax(going);
+
+                console.timeEnd('calculate time');
 
                 flag = false;
             }
