@@ -23,6 +23,13 @@ input{
   color: white;
 }
 
+button{
+  background: grey;
+  border: none;
+  color: white;
+  padding: 8px;
+}
+
 .number{
   position: absolute;
   right: 15vw;
@@ -34,4 +41,15 @@ input{
   position: absolute;
   left: 15vw;
   height: 2rem;
+}
+
+.position{
+  position: absolute;
+  top: 10%;
+}
+
+h1{
+  color: white;
+  position: absolute;
+  bottom: 5%;
 }
