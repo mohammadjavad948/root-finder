@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
+const em = require('exact-math');
 
 function App() {
 
@@ -16,36 +17,54 @@ function App() {
         setIndex(+event)
     }
 
-    function findMinAndMax() {
-        if (number < 1 && index < 2) return null
-
+    function clickAction(){
         console.time('calculate time');
 
-        let flag = true;
-        let going = 1;
+        findMinAndMax(1)
+    }
 
-        while (flag){
+    function findMinAndMax(going: number) {
+        if (number < 1 && index < 2) return null
 
-            const n = Math.pow(going, index);
+        const n = Math.pow(going, index);
 
-            if (n < number){
+        if (n < number){
 
-                console.log(`${going} ^ ${index} is smaller than ${number} . trying ${going + 1} ^ ${index}`);
+            console.log(`${going} ^ ${index} is smaller than ${number} . trying ${going + 1} ^ ${index}`);
 
-                setMin(going);
+            setMin(going);
 
-            }else {
+            findMinAndMax(going + 1);
 
-                console.log(`${going} ^ ${index} is bigger than ${number} . we are done!`)
+        }else {
 
-                setMax(going);
+            console.log(`${going} ^ ${index} is bigger than ${number} `)
 
-                console.timeEnd('calculate time');
+            setMax(going);
 
-                flag = false;
-            }
+            little(going);
+        }
+    }
 
-            going++;
+    function little(going: number) {
+
+        const n = Math.pow(going, index);
+
+        if (n > number){
+
+            setMax(going);
+
+            console.log(`${going} ^ ${index} is bigger than ${number} . wait a minute`)
+
+            little(em.sub(going, '.1'))
+
+        }else {
+
+            setMin(going)
+
+            console.log(`${going} ^ ${index} is smaller than ${number} . we are done!`);
+
+            console.timeEnd('calculate time');
         }
     }
 
@@ -63,7 +82,7 @@ function App() {
             onChange={e => indexChange(e.target.value)}
         />
         <button
-            onClick={findMinAndMax}
+            onClick={clickAction}
             className="position">
             calculate
         </button>
